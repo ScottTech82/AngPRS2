@@ -1,8 +1,8 @@
 <div id="component">
     <prs-head [pageTitle]="pageTitle"></prs-head>
     <table style="width: 90%">
-    <th id="cnBtn"><a *ngIf="admin.isAdmin" id="createnew" routerLink="/user/create">-> Create New User <-</a></th>
-    <th id="cnBtn"><a *ngIf="admin.username === 'Guest'" id="createnew" >-> Create New User <-</a></th>
+    <th id="cnBtn"><a *ngIf="admin.isAdmin || admin.username === 'Guest'" id="createnew" routerLink="/user/create">-> Create New User <-</a></th>
+    <!-- <th id="cnBtn"><a *ngIf="admin.username === 'Guest'" id="createnew" >-> Create New User <-</a></th> -->
     <td id="sBar"><input id="searchBar" [(ngModel)]="searchCrit" placeholder="search (lowercase)" ></td>
     </table>
         <table class="table table-sm table-striped table-hover">
@@ -31,14 +31,16 @@
                     <td>{{u.isAdmin|boolDisp}}</td>
                     <td class="text-center">
                         <a id="actions" routerLink="/user/detail/{{u.id}}">User Details </a>
-                        <span *ngIf="admin.isAdmin">
+                        <span *ngIf="admin.isAdmin || admin.username === 'Guest'">
                             &nbsp;|&nbsp;
                             <a id="actions" routerLink="/user/change/{{u.id}}">Edit User</a>
                         </span>
+                    <!--
                         <span *ngIf="admin.username === 'Guest'">
                             &nbsp;|&nbsp;
                             <a id="actions"  disabled>Edit User</a>
                         </span>
+                    -->
                         </td>
             </tbody>
         </table>

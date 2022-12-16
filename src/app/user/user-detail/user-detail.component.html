@@ -35,12 +35,13 @@
             <table class="table table-sm">
                 <tr>
                     <th></th>
-                    <td *ngIf="admin.isAdmin" id="tdButton">
+                    <td *ngIf="admin.isAdmin || admin.username === 'Guest'" id="tdButton">
                         <button id="removeBtn" (click)="remove()" class="btn btn-danger">Delete User</button>
                         <span *ngIf="showVerifButton">
-                            &nbsp;&nbsp;&nbsp;----> 
-                            <button (click)="verifyDeletion()" class="btn btn-danger">Please Verify Delete</button> <----
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button (click)="verifyDeletion()" class="btn btn-danger">Please Confirm this Delete</button>&nbsp;&nbsp;&nbsp;
                         </span>
+                        <span class="text-danger h6">&nbsp;&nbsp;{{message}}</span>
                     </td>
                 </tr>
             </table>

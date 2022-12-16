@@ -14,6 +14,7 @@ export class UserCreateComponent implements OnInit {
   pageTitle: string = "-- Create New User --"
   user: User = new User;
   DetailPage: boolean = false;
+  message: string = "";
   
   constructor(
     private usersvc: UserService,
@@ -22,15 +23,20 @@ export class UserCreateComponent implements OnInit {
   ) { }
 
   create(): void {
-    this.usersvc.create(this.user).subscribe({
-      next: (res) => {
-        console.debug("User created.");
-        this.router.navigateByUrl("/user/list");
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    if(this.sys.user.username !== 'Guest') {
+      this.usersvc.create(this.user).subscribe({
+        next: (res) => {
+          console.debug("User created.");
+          this.router.navigateByUrl("/user/list");
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+    }
+    else {
+      this.message = "**This button is disabled when logged in as a guest**";
+    }
   }
 
   ngOnInit(): void {
