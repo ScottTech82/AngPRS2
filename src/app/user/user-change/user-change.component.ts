@@ -14,6 +14,7 @@ export class UserChangeComponent implements OnInit {
   pageTitle: string = "-- User Update --"
   user: User = new User;
   DetailPage: boolean = false;
+  message: string = "";
   
   constructor(
     private usersvc: UserService,
@@ -24,6 +25,7 @@ export class UserChangeComponent implements OnInit {
   ) { }
 
   save(): void {
+    if(this.sys.user.username !== 'Guest') {
     this.usersvc.change(this.user).subscribe({
       next: (res) => {
         console.debug("User updated.");
@@ -33,6 +35,10 @@ export class UserChangeComponent implements OnInit {
           console.error(err);
         }
     });
+    }
+    else {
+      this.message = "**This button is disabled when logged in as a guest**";
+    }
   }
 
   ngOnInit(): void {

@@ -16,6 +16,7 @@ export class UserDetailComponent implements OnInit {
     DetailPage: boolean = true;
     showVerifButton: boolean = false;
     admin!: User;
+    message: string = "";
 
   constructor(
     private usersvc: UserService,
@@ -29,7 +30,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   verifyDeletion(): void {
- 
+    if(this.sys.user.username !== 'Guest') {
     this.usersvc.remove(this.user.id).subscribe({
       next: (res) => {
         console.debug("The User was deleted!");
@@ -39,6 +40,10 @@ export class UserDetailComponent implements OnInit {
         console.error(err);
       }
     });
+  }
+    else {
+      this.message = "**This button is disabled when logged in as a guest, but will remove the user and navigate back to the User list**";
+    }
   }
 
   ngOnInit(): void {
