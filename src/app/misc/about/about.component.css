@@ -1,19 +1,22 @@
 h6{
-    text-align: center;
+    text-align: left;
+    margin-left: 15%;
 }
 
 #ptop{
     word-wrap: normal;
-    text-align: center;
+    text-align: left;
+    margin-left: 15%;
 }
 #pbody{
     word-wrap: normal;
     text-align: left;
-    margin-left: 100px;
-    margin-right: 200px;
+    margin-left: 15%;
+    margin-right: 45%;
 }
 #pbody1{
     word-wrap: normal;
-    text-align: center;
+    text-align: left;
+    margin-left: 15%;
 
 }

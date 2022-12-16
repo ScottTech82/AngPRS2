@@ -16,6 +16,7 @@ export class VendorChangeComponent implements OnInit {
   DetailPage: boolean = false;
   vend!: Vendor;
   admin!: User;
+  message: string = "";
 
   constructor(
     private vendsvc: VendorService,
@@ -25,20 +26,25 @@ export class VendorChangeComponent implements OnInit {
   ) { }
 
   update(): void {
-    this.vendsvc.change(this.vend).subscribe({
-      next: (res) => {
-        console.debug("Vendor updated.");
-        this.router.navigateByUrl("/vendor/list");
-      },
-      error: (err) => {
-        if(err.status === 404) {
-          this.router.navigateByUrl("/misc/e404");
+    if(this.sys.user.username !== 'Guest') {
+      this.vendsvc.change(this.vend).subscribe({
+        next: (res) => {
+          console.debug("Vendor updated.");
+          this.router.navigateByUrl("/vendor/list");
+        },
+        error: (err) => {
+          if(err.status === 404) {
+            this.router.navigateByUrl("/misc/e404");
+          }
+          else {
+            console.error(err);
+          }
         }
-        else {
-          console.error(err);
-        }
-      }
-    });
+      });
+    }
+    else {
+      this.message = "**This button is disabled when logged in as a guest**";
+    }
   }
 
   ngOnInit(): void {
