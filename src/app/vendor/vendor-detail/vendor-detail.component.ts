@@ -17,6 +17,7 @@ export class VendorDetailComponent implements OnInit {
   vend!: Vendor;
   verifyRemoveButton: boolean = false;
   admin!: User;
+  message: string = "";
 
   constructor(
     private vendsvc: VendorService, 
@@ -29,15 +30,20 @@ export class VendorDetailComponent implements OnInit {
     this.verifyRemoveButton = !this.verifyRemoveButton;
   }
   verifyRemove(): void {
-    this.vendsvc.remove(this.vend.id).subscribe({
-      next: (res) => {
-        console.debug("Vendor deleted.");
-        this.router.navigateByUrl("/vendor/list");
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    if(this.sys.user.username !== 'Guest') {
+      this.vendsvc.remove(this.vend.id).subscribe({
+        next: (res) => {
+          console.debug("Vendor deleted.");
+          this.router.navigateByUrl("/vendor/list");
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+    }
+    else {
+      this.message = "**This button is disabled when logged in as a guest, but will remove the vendor and navigate back to the vendor list**";
+    }
   }
 
   ngOnInit(): void {

@@ -58,5 +58,8 @@ tbody tr:hover {
     font-weight: bold;
     padding: 0px;
 }
+#listinfo{
+    padding-left: 30px;
+}
 
 

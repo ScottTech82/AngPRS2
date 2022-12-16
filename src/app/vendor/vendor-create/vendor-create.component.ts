@@ -14,6 +14,7 @@ export class VendorCreateComponent implements OnInit {
   pageTitle: string = "-- Create New Vendor --"
   vend: Vendor = new Vendor;
   DetailPage: boolean = false;
+  message: string = "";
 
   constructor(
     private vendsvc: VendorService,
@@ -22,15 +23,21 @@ export class VendorCreateComponent implements OnInit {
   ) { }
 
   create(): void {
-    this.vendsvc.create(this.vend).subscribe({
-      next: (res) => {
-        console.debug("Vendor created.");
-        this.router.navigateByUrl("/vendor/list");
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    if(this.sys.user.username !== 'Guest'){
+      this.vendsvc.create(this.vend).subscribe({
+        next: (res) => {
+          console.debug("Vendor created.");
+          this.router.navigateByUrl("/vendor/list");
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+    }
+    else {
+      this.message = "**This button is disabled when logged in as a guest**";
+    }
+
   }
   ngOnInit(): void {
     this.sys.chkLogin();
