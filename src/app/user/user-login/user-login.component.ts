@@ -36,8 +36,8 @@ export class UserLoginComponent implements OnInit {
       },
       error: (err) => {
         if(err.status === 404) {
-          this.message = "**The Username or Password entered does not exist.**";
-          this.message2 = "**Please try again or contact an Admin.**";
+          this.message = "**The Username or Password entered is not found.**";
+          this.message2 = "**Please re-check the information and try again or contact an Admin.**";
         }
         else {
           console.error(err);

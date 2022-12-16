@@ -2,6 +2,7 @@
     <prs-head [pageTitle]="pageTitle"></prs-head>
     <table style="width: 90%">
     <th id="cnBtn"><a *ngIf="admin.isAdmin" id="createnew" routerLink="/user/create">-> Create New User <-</a></th>
+    <th id="cnBtn"><a *ngIf="admin.username === 'Guest'" id="createnew" >-> Create New User <-</a></th>
     <td id="sBar"><input id="searchBar" [(ngModel)]="searchCrit" placeholder="search (lowercase)" ></td>
     </table>
         <table class="table table-sm table-striped table-hover">
@@ -34,10 +35,25 @@
                             &nbsp;|&nbsp;
                             <a id="actions" routerLink="/user/change/{{u.id}}">Edit User</a>
                         </span>
+                        <span *ngIf="admin.username === 'Guest'">
+                            &nbsp;|&nbsp;
+                            <a id="actions"  disabled>Edit User</a>
+                        </span>
                         </td>
-                </tr>
             </tbody>
         </table>
+        <br>
+        <p>
+            ****Please note: Logging in as Guest will disable the Edit buttons & Create new buttons.****
+        </p><br>
+        <p id="userlistinfo">
+            *I created a Pipe that allows you to sort by any of the columns. &nbsp;Simply click the column header.<br>
+            **Go on.. dont be scared.. give it a try!**
+        </p>
+        <p>
+            *And created a search feature that allows you to search for specific users or vendors, etc. &nbsp;It updates as you type.
+        </p>
+
         <!--
         <div id="cnBtn">
             <span><a *ngIf="admin.isAdmin" id="createnew" routerLink="/user/create">-> Create New User <-</a></span>

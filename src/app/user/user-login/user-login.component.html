@@ -1,5 +1,8 @@
 <div class="login">
     <form>
+        <div id="loginMessage" class="text-danger h5">{{message}}</div>
+        <div id="loginMessage" class="text-danger h5">{{message2}}</div>
+        <br>
         <h3 id="loginHeader">-- PRS User Login --</h3><br>
         <span id="username">Username:&nbsp;&nbsp;</span><br>
         <input [(ngModel)]="username" placeholder="" name="username" size="30"><br>
@@ -25,7 +28,8 @@
                <br><span>_________________________________________________</span>
             </p>
             <p id="guestinfo">
-                You may use the guest login to browse the application.  If you would like to interact with more
+                You may use the guest login to browse the application. &nbsp;However, some features like Edit or Create New
+                will be disabled. &nbsp;If you would like to interact with more
                 advanced features, please reach out and I will provide upon request.
             </p>
             <table class="table table-sm">
@@ -37,9 +41,7 @@
                 </tr>
             </table>
          </div>
-         <br>
-        <div id="loginMessage" class="text-danger h5">{{message}}</div>
-        <div id="loginMessage" class="text-danger h5">{{message2}}</div>
+
     </form>
 </div>
 

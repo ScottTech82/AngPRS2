@@ -18,6 +18,7 @@ export class UserListComponent implements OnInit {
   sortColumn: string = "id";
   sortAsc: boolean = true;
   
+  
   constructor(
     private usersvc: UserService,
     private sys: SystemService

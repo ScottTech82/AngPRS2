@@ -2,6 +2,7 @@
     <prs-head [pageTitle]="pageTitle"></prs-head>
     <table style="width: 90%">
         <th id="cnBtn"><a *ngIf="admin.isAdmin" id="createnew" routerLink="/product/create">-> Create New Product <-</a></th>
+        <th id="cnBtn"><a *ngIf="admin.username === 'Guest'" id="createnew" >-> Create New Product <-</a></th>
         <td id="sBar"><input id="searchBar" [(ngModel)]="searchCrit" placeholder="search (lowercase)" ></td>
         </table>
         <table class="table table-sm table-striped table-hover">
@@ -31,10 +32,17 @@
                         <span *ngIf="admin.isAdmin"> &nbsp;|&nbsp;
                         <a id="actions" routerLink="/product/change/{{p.id}}">Edit Product</a>
                         </span>
+                        <span *ngIf="admin.username === 'Guest'"> &nbsp;|&nbsp;
+                        <a id="actions" >Edit Product</a>
+                        </span>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <br>
+            <p>
+                ****Please note: Logging in as Guest will disable the Edit buttons & Create new buttons.****
+            </p><br>
    <!-- <div *ngIf="admin.isAdmin" id="cnBtn">
         <span><a id="createnew" routerLink="/product/create">-> Create New Product <-</a></span>
     </div> -->
