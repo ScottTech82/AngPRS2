@@ -52,7 +52,7 @@ export class VendorChangeComponent implements OnInit {
     let id = +this.route.snapshot.params["id"];
     this.vendsvc.get(id).subscribe({
       next: (res) => {
-        console.debug("Vendor:",res);
+        //console.debug("Vendor:",res);
         this.vend = res;
       },
       error: (err) => {
