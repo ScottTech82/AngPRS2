@@ -28,22 +28,27 @@ export class UserLoginComponent implements OnInit {
 
   login(): void {
     this.sys.user = null;
-    this.usersvc.login(this.username, this.password).subscribe({
-      next: (res) => {
-        //console.debug("User:", res);
-        this.sys.user = res;
-        this.router.navigateByUrl("/user/list");
-      },
-      error: (err) => {
-        if(err.status === 404) {
-          this.message = "**The Username or Password entered is not found.**";
-          this.message2 = "**Please re-check the information and try again or contact an Admin.**";
+    if(this.username === null || this.password === null) {
+      this.message = "**Please enter a Username and Password**";
+    }
+    else { 
+      this.usersvc.login(this.username, this.password).subscribe({
+        next: (res) => {
+          //console.debug("User:", res);
+          this.sys.user = res;
+          this.router.navigateByUrl("/user/list");
+        },
+        error: (err) => {
+          if(err.status === 404) {
+            this.message = "**The Username or Password entered is not found.**";
+            this.message2 = "**Please re-check the information and try again or contact an Admin.**";
+          }
+          else {
+            console.error(err);
+          }
         }
-        else {
-          console.error(err);
-        }
-      }
-    });
+      });
+    }
   }
 
   guestlogin(): void {
