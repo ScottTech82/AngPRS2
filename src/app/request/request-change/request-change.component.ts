@@ -14,6 +14,7 @@ export class RequestChangeComponent implements OnInit {
   pageTitle: string = "-- Request Update --";
   DetailPage: boolean = false;
   req!: Request;
+  message: string = "";
 
   constructor(
     private reqsvc: RequestService,
@@ -23,6 +24,7 @@ export class RequestChangeComponent implements OnInit {
   ) { }
 
   update(): void {
+    if(this.req.status !== 'APPROVED') {
     this.reqsvc.change(this.req).subscribe({
       next: (res) => {
         console.debug("Request updated");
@@ -32,6 +34,10 @@ export class RequestChangeComponent implements OnInit {
         console.error(err);
       }
     });
+  }
+    else {
+      this.message = "**Approved requests cannot be changed**";
+    }
   }
 
   ngOnInit(): void {
