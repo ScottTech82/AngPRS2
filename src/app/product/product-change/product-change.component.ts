@@ -17,6 +17,7 @@ export class ProductChangeComponent implements OnInit {
   DetailPage: boolean = false;
   prod!: Product;
   vendor: Vendor[] = [];
+  message: string = "";
 
   constructor(
     private prodsvc: ProductService,
@@ -27,6 +28,7 @@ export class ProductChangeComponent implements OnInit {
   ) { }
 
   update(): void {
+    if(this.sys.user.username !== 'Guest') {
     this.prodsvc.change(this.prod).subscribe({
       next: (res) => {
         console.debug("Product udpated.");
@@ -36,6 +38,10 @@ export class ProductChangeComponent implements OnInit {
         console.error(err);
       }
     });
+  }
+    else {
+      this.message = "**This button is disabled when logged in as a guest**";
+    }
   }
 
 

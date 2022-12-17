@@ -1,7 +1,10 @@
 <div id="component">
     <prs-head [pageTitle]="pageTitle"></prs-head>
     <table style="width: 90%">
+        <!-- Thought about restricting the amount of new requests, need a button to put the method in, instead of link.
         <th id="cnBtn" ><button id="createnew" routerLink="/request/create" [disabled]="createNewchk()">-> Create New Request <-</button></th>
+        -->
+        <th id="cnBtn"><a id="createnew" routerLink="/request/create">-> Create New Request <-</a></th>
         <td id="sBar"><input id="searchBar" [(ngModel)]="searchCrit" placeholder="user only search" ></td>
         </table>
         <table  *ngIf="req" class="table table-sm table-striped table-hover">
@@ -35,7 +38,7 @@
         <br>
         <p id="listinfo">
             **Please note: Request List will only show the current logged in users requests. &nbsp;If logged in as a 'reviewer'
-            then you will see everyone's requests.
+            then you will see everyone's requests. &nbsp;The Guest account is marked as a reviewer.
         </p><br>
 
 </div>

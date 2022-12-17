@@ -20,6 +20,7 @@ export class ProductDetailComponent implements OnInit {
   verifyRemoveButton: boolean = false;
   vend: Vendor[] = [];
   admin!: User;
+  message: string = "";
 
   constructor(
     private prodsvc: ProductService,
@@ -34,6 +35,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   verifyRemove(): void {
+    if(this.sys.user.username !== 'Guest') {
     this.prodsvc.remove(this.prod.id).subscribe({
       next: (res) => {
         console.debug("Product deleted");
@@ -42,7 +44,11 @@ export class ProductDetailComponent implements OnInit {
       error: (err) => {
         console.error(err);
       }
-    })
+    });
+    }
+    else {
+      this.message = "**This button is disabled when logged in as a guest**";
+    }
   }
 
   ngOnInit(): void {
