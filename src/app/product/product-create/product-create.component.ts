@@ -17,6 +17,7 @@ export class ProductCreateComponent implements OnInit {
   DetailPage: boolean = false;
   prod: Product = new Product;
   vendor: Vendor[] = [];
+  message: string = "";
 
   constructor(
     private prodsvc: ProductService,
@@ -26,6 +27,7 @@ export class ProductCreateComponent implements OnInit {
   ) { }
 
   create(): void{
+    if(this.sys.user.username !== 'Guest') {
     this.prodsvc.create(this.prod).subscribe({
       next: (res) => {
         console.debug("Product created");
@@ -35,6 +37,10 @@ export class ProductCreateComponent implements OnInit {
         console.error(err);
       }
     });
+    }
+    else {
+      this.message = "**This button is disabled when logged in as a guest**";
+    }
   }
 
 

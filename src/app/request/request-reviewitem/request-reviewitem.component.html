@@ -59,10 +59,10 @@
                 [(ngModel)]="fred" name="rejres" required minlength="1">
                 <!-- <input type="submit" onclick="verifyReject()" value="Verify Reject" id="rejectBtn">  -->
                 <div *ngIf="fred">
-                    <button (click)="verifyReject()" class="btn btn-danger" type="submit" >Verify Reject</button>
+                    <button (click)="verifyReject()" class="btn btn-danger" type="submit" >Submit Reject</button>
                 </div>
                 <div *ngIf="!fred" id="rejreas">
-                    Please enter a rejection reason.
+                    Please enter a rejection reason to send back to the user.  The submit button will show once a reason is entered.
                 </div>
             </span>
         </form>
