@@ -37,7 +37,7 @@ export class UserListComponent implements OnInit {
     this.sys.chkLogin();
     this.usersvc.list().subscribe({
       next: (res) => {
-        console.debug("Users:", res);
+        //console.debug("Users:", res);
         this.users = res;
       },
       error: (err) => {

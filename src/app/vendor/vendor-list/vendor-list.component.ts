@@ -37,7 +37,7 @@ export class VendorListComponent implements OnInit {
     this.sys.chkLogin();
     this.vendsvc.list().subscribe({
       next: (res) => {
-        console.debug("Vendors:", res);
+        //console.debug("Vendors:", res);
         this.vend = res;
       },
       error: (err) => {

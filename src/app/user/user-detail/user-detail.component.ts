@@ -51,7 +51,7 @@ export class UserDetailComponent implements OnInit {
     let id = +this.route.snapshot.params["id"];
     this.usersvc.get(id).subscribe({
       next: (res) => {
-        console.debug("User:", res);
+        //console.debug("User:", res);
         this.user = res;
       },
       error: (err) => {
