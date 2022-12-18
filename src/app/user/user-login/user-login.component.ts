@@ -28,7 +28,7 @@ export class UserLoginComponent implements OnInit {
 
   login(): void {
     this.sys.user = null;
-    if(this.username === null || this.password === null) {
+    if(this.username === "" || this.password === "") {
       this.message = "**Please enter a Username and Password**";
     }
     else { 

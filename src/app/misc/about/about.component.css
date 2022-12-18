@@ -12,11 +12,21 @@ h6{
     word-wrap: normal;
     text-align: left;
     margin-left: 15%;
-    margin-right: 45%;
+    margin-right: 0%;
 }
 #pbody1{
     word-wrap: normal;
     text-align: left;
     margin-left: 15%;
 
+}
+#leftdiv{
+    display: inline-block;
+    width: 49%;
+}
+#rightdiv{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15%;
+    
 }
